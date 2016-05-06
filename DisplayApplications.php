@@ -1,17 +1,4 @@
-<?php
-    //Include menu options applicable to all pages of the web site
-    include("PhpSampleTemplate.php");
-?>
-
-<HTML>
-    <head>
-        <title>
-            Administration Page For applicationss
-        </title>    
-		 <link rel="stylesheet" type="text/css" href="StyleSheet.css" />
-    </head>
-
-    <BODY>
+<?php include("header.php"); ?>
         <h1>
             /applications
         </h1>  
@@ -32,5 +19,4 @@
                 }
             ?>
         </table>
-    </BODY>
-</HTML>
+<?php include("footer.php"); ?>

@@ -1,0 +1,30 @@
+{
+  "eduPersonAttributes" :
+    [
+      {
+        "name": "eduPersonPrincipalName",
+        "label": "eduPerson Principal Name",
+        "dataType": ["string"],
+        "targetObjects": ["User"]
+      },
+      {
+        "name": "eduPersonPrimaryAffiliation",
+        "label": "eduPerson Primary Affiliation",
+        "dataType": ["string"],
+        "targetObjects": ["User"]
+      },
+      {
+        "name": "eduPersonEntitlement",
+        "label": "eduPerson Entitlement",
+        "dataType": ["string"],
+        "targetObjects": ["User"]
+      },
+      {
+        "name": "eduPersonAffiliation",
+        "label": "eduPerson Affiliation",
+        "dataType": ["string"],
+        "targetObjects": ["User"]
+      }
+  ]
+
+}

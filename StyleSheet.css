@@ -28,3 +28,41 @@ color:#ffffff;
 color:#000000;
 background-color:#EEEEEE;
 }
+
+/*Unicon extension*/
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+.header-title {
+    display: inline-block;
+}
+
+#CreateExtension,
+button.cancel-btn {
+    float: right;
+}
+#CreateExtensionForm-wrapper,
+.alert {
+    display: none;
+    margin: 20px 0px;
+}
+
+td {
+    padding: 5px;
+}
+
+#directoryObjects td:last-child form {
+    float: right;
+}
