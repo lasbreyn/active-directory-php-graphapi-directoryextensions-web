@@ -1,5 +1,6 @@
 <?php
     include("header.php");
+    include("navigation.php");
     // Load json data for default eduPerson details
     $data = file_get_contents ("accets/defaults.json");
     $json = json_decode($data, true);
@@ -40,14 +41,14 @@
         </tr>
         <?php
             $extensions = GraphServiceAccessHelper::getFeed('applications/'.Settings::$appObjectId.'/extensionProperties');
-            if (isset($extensions) && count($extensions) > 0)
-            {
+            if (isset($extensions) && count($extensions) > 0) {
                 foreach ($extensions as $extension){
                     $extension_info = 'objectId='.$extension->{'objectId'};
                     echo('<tr><td>'. $extension->{'name'}. '</td><td>'. $extension->{'dataType'} .'</td><td>'. implode(", ", $extension->{'targetObjects'}) .'
-                    <form id="'.$extension->{'name'}.'" method="post" action="controller.php?action=deleteExtension&data='.$extension_info.'">
+                    <form id="'.$extension->{'name'}.'" method="post" action="/CreateExtension.php">
                     <input type="hidden" name="objectId" value="'.$extension->{'objectId'}.'" />
-                    <input type="submit" class="btn btn-default right" value="Disable"/>
+                    <input type="hidden" name="action" value="deleteExtension" />
+                    <input type="submit" name="submit" class="btn btn-default right" value="Disable"/>
                     </form>
                     </td></tr>');
                 }
@@ -59,9 +60,8 @@
     </table>
     <br/><br/>
     <h3>eduPerson Extensions Available</h3>
-<!--    Default extensions-->
     <?php if($json): ?>
-        <table class="table table-striped table-hover table-bordered CreateExtensionDefaultsTable">
+        <table id="directoryObjects" class="table table-striped table-hover table-bordered CreateExtensionDefaultsTable">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -79,31 +79,34 @@
                     $name = array_pop($name_arr);
                     array_push($passed, $name);
                 }
-                foreach ($json['eduPersonAttributes'] as $extension) {
-
-                    if(!in_array($extension['name'], $passed)) {
-                        $block .= '<tr>';
-                        $block .= '<td><b>'.$extension['label'].'</b></td>';
-                        $block .= '<td>';
-                        $block .= '<select name="dataType">';
-                        foreach ($extension['dataType'] as $key => $target) {
-                            $block .= '<option value="'.$target.'" selected="selected">'.$target.'</option>';
-                        }
-                        $block .= '</select>';
-                        $block .= '</td>';
-                        $block .= '<td>';
-                        foreach ($extension['targetObjects'] as $key => $target) {
-                            $block .= '<input type="checkbox" name="targetObjects[]" value="'.$target.'" checked="checked"> '.$target.'</br>';
-                        }
-                        $block .= '</td>';
-                        $block .= '<td>';
-                        $block .= '<button type="button" class="btn btn-default" name="'. $extension['name'].'" value="'. $extension['name'].'">Enable</button>';
-                        $block .= '</td>';
-                        $block .= '</tr>';
-                    }
-                }
-                echo $block;
             ?>
+            <?php foreach ($json['eduPersonAttributes'] as $extension): ?>
+
+                <?php if(!in_array($extension['name'], $passed)): ?>
+                    <tr>
+                        <td><b><?php echo $extension['label']; ?></b></td>
+                        <td>
+                            <?php foreach ($extension['dataType'] as $key => $target): echo $target; endforeach;?>
+                        </td>
+                        <td>
+                            <?php foreach ($extension['targetObjects'] as $key => $target): echo $target; endforeach;?>
+                        </td>
+                        <td>
+                            <form id="<?php echo $extension['name']; ?>" method="post" action="/CreateExtension.php">
+                                <input type="hidden" size="20" maxlength="15" name="extensionName" value="<?php echo $extension['name']; ?>">
+                                <?php foreach ($extension['dataType'] as $key => $target): ?>
+                                    <input type="hidden" name="dataType" value="<?php echo $target; ?>" checked="checked">
+                                <?php endforeach; ?>
+                                <?php foreach ($extension['targetObjects'] as $key => $target): ?>
+                                    <input type="hidden" name="targetObjects[]" value="<?php echo $target; ?>" checked="checked">
+                                <?php endforeach; ?>
+                                <input class="btn btn-default" type="submit" name="submit" value="Enable">
+                                <input type="hidden" name="action" value="createExtension" />
+                            </form>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
             </tbody>
         </table>
     <?php endif; ?>

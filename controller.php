@@ -3,6 +3,10 @@
   require_once 'GraphServiceAccessHelper.php';
   require_once 'AuthorizationHelperForGraph.php';
 
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>"
+
   $action = $_REQUEST['action'];
   $params = array();
   parse_str($_REQUEST['data'], $params);

@@ -2,7 +2,11 @@
     //Include menu options applicable to all pages of the web site
     include("PhpSampleTemplate.php");
 ?>
-
+<?php
+    // If this was not a post back show the create user form
+    if (!isset($_POST['submit'])) {
+        include("navigation.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,11 +15,8 @@
         </title>
     </head>
     <body>
-        <?php
-            // If this was not a post back show the create user form
-            if (!isset($_POST['submit'])) {          
-        ?>        
-        <form method="post" action="<?php echo($_SERVER['PHP_SELF']);?>">            
+
+        <form method="post" action="<?php echo($_SERVER['PHP_SELF']);?>">
             <table>
                 <tr><td><b>Display Name:</b></td><td><input type="text" size="20" maxlength="100" name="dname"></td></tr>
                 <tr><td><b>Mail alias:</b></td><td><input type="text" size="20" maxlength="15" name="alias"></td></tr>
@@ -24,12 +25,14 @@
                 <tr><td><b>Force Password Change on Next Login:</b></td></tr>
                 <tr><td><b>True:</b></td><td><input type="radio" value="True" name="forcePasswordChangeOnNextLogin" checked></td></tr>
                 <tr><td><b>False:</b></td><td><input type="radio" value="False" name="forcePasswordChangeOnNextLogin"></td></tr>
-                <tr><td><b>Account Enabled:</b></td></tr>                
+                <tr><td><b>Account Enabled:</b></td></tr>
                 <tr><td><b>True:</b></td><td><input type="radio" value="True" name="accountenabled" checked></td></tr>
                 <tr><td><b>False:</b></td><td><input type="radio" value="False" name="accountenabled"></td></tr>
-                <tr><td><input type="submit" value="submit" name="submit"></td></tr> 
+                <tr><td><input type="submit" value="submit" name="submit"></td></tr>
             </table>
-        </form>        
+        </form>
+    </body>
+</html>
  <?php
  } else {
             // Validate that the inputs are non-empty.
@@ -50,13 +53,13 @@
                     'displayName'=> $displayName,
                     'userPrincipalName' => $alias.'@'.Settings::$appTenantDomainName ,
                     'mailNickname' => $alias,
-                    'passwordProfile' => $passwordProfile,                    
+                    'passwordProfile' => $passwordProfile,
                     'accountEnabled' => $accountEnabled,
                     'jobTitle' => $jobTitle
                             );
                 // Create the user and display a message
                 $user = GraphServiceAccessHelper::addEntryToFeed('users',$userEntryInput);
-                
+
                 //Check to see if we got back an error.
                 if(!empty($user->{'odata.error'}))
                 {
@@ -68,6 +71,5 @@
                 }
             }
  }
- ?>        
-</body>
-</html>
+ ?>
+

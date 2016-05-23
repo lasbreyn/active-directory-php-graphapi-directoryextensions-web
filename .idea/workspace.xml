@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c5f6c2a-e26a-43d9-aa37-ad3dbf32270c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/css/cmxform.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/css/cmxformTemplate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/css/core.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/css/reset.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/css/screen.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/defaults.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/scripts/jquery-1.12.3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/scripts/jquery.validate.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/accets/scripts/script.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/footer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DisplayApplications.php" afterPath="$PROJECT_DIR$/DisplayApplications.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DisplayExtensions.php" afterPath="$PROJECT_DIR$/DisplayExtensions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DisplayUsers.php" afterPath="$PROJECT_DIR$/DisplayUsers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/EditUser.php" afterPath="$PROJECT_DIR$/EditUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Settings.php" afterPath="$PROJECT_DIR$/Settings.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StyleSheet.css" afterPath="$PROJECT_DIR$/StyleSheet.css" />
-    </list>
+    <list default="true" id="9c5f6c2a-e26a-43d9-aa37-ad3dbf32270c" name="Default" comment="" />
     <ignored path="azure-sample.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -143,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/footer.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+              <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -351,12 +332,12 @@
       <option name="presentableId" value="Default" />
       <updated>1462298521581</updated>
       <workItem from="1462298524155" duration="49533000" />
-      <workItem from="1462468793134" duration="18746000" />
+      <workItem from="1462468793134" duration="19339000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68279000" />
+    <option name="totallyTimeSpent" value="68872000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="23" width="1641" height="1023" extended-state="0" />
@@ -702,7 +683,7 @@
     <entry file="file://$PROJECT_DIR$/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
           <folding />
         </state>
       </provider>

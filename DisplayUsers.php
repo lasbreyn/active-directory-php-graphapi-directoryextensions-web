@@ -1,4 +1,7 @@
-<?php include("header.php"); ?>
+<?php
+    include("header.php");
+    include("navigation.php");
+ ?>
     <h1>
         /Users
     </h1>
