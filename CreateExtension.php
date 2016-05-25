@@ -57,8 +57,12 @@ else {
                 echo('<p>Extension creation failed. Service returned error:<b>'.$message->{'value'}. '</b>  Please go back to <a href="createExtension.php">Create Extension</a>.</p>');
                 exit;
             } else {
-                header('Location: DisplayExtensions.php');
-                exit;
+                if (headers_sent()) {
+                    exit('<p>Extension has been created,  <a href="DisplayExtensions.php">view all extensions</a></p>');
+                }
+                else{
+                    exit(header('Location: DisplayExtensions.php'));
+                }
             }
         }
     }
@@ -75,8 +79,12 @@ else {
             echo('<p>Extension creation failed. Service returned error:<b>'.$message->{'value'}. '</b>  Please go back to <a href="DisplayExtensions.php">Remove Extension</a>.</p>');
             exit;
         } else {
-            header('Location: DisplayExtensions.php');
-            exit;
+            if (headers_sent()) {
+                exit('<p>Extension has been created,  <a href="DisplayExtensions.php">view all extensions</a></p>');
+            }
+            else{
+                exit(header('Location: DisplayExtensions.php'));
+            }
         }
     }
  }

@@ -67,7 +67,12 @@
                     echo('<p>User creation failed. Service returned error:<b>'.$message->{'value'}. '</b>  Please go back to <a href="createUser.php">Create User</a></p>');
                 }
                 else {
-                    header('Location: DisplayUsers.php');
+                    if (headers_sent()) {
+                        exit('<p>Extension has been created,  <a href=DisplayUsers.php">view all extensions</a></p>');
+                    }
+                    else{
+                        exit(header('Location: DisplayUsers.php'));
+                    }
                 }
             }
  }

@@ -1,7 +1,7 @@
 <?php
     //Require other files.
     require_once 'Settings.php';
-    require_once 'AuthorizationHelperForGraph.php';   
+    require_once 'AuthorizationHelperForGraph.php';
 
     class GraphServiceAccessHelper
     {
@@ -12,7 +12,7 @@
             $ch = curl_init();
             // Add authorization and other headers. Also set some common settings.
             self::AddRequiredHeadersAndSettings($ch);
-            // set url 
+            // set url
             $feedURL = "https://graph.windows.net/".Settings::$appTenantDomainName."/".$feedName;
             $feedURL = $feedURL."?api-version=1.21-preview";
             curl_setopt($ch, CURLOPT_URL, $feedURL);
@@ -21,14 +21,14 @@
 
             // $output contains the output string
             $output = curl_exec($ch);
-            // close curl resource to free up system resources 
-            curl_close($ch);      
+            // close curl resource to free up system resources
+            curl_close($ch);
             $jsonOutput = json_decode($output);
             // There is a field for odata metadata that we ignore and just consume the value
             return $jsonOutput->{'value'};
         }
 
-        // Constructs a Http GET request to a linked feed based on the source entry and navigation property name.        
+        // Constructs a Http GET request to a linked feed based on the source entry and navigation property name.
         public static function getLinkedFeed($sourceFeedName, $sourceEntryId, $navigationPropertyName){
             //initiaze curl which is used to make the http request
             $ch = curl_init();
@@ -41,10 +41,10 @@
             //Enable fiddler to capture request
             //curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1:8888');
 
-            // $output contains the output string 
+            // $output contains the output string
             $output = curl_exec($ch);
-            // close curl resource to free up system resources 
-            curl_close($ch);      
+            // close curl resource to free up system resources
+            curl_close($ch);
             $jsonOutput = json_decode($output);
             // There is a field for odata metadata that we ignore and just consume the value
             return $jsonOutput->{'value'};
@@ -52,7 +52,7 @@
 
 
         // Constructs a Http GET request to a feed passed in as paremeter and uses the field information as the filter clause.
-        // Returns the json decoded respone as the objects that were recieved in feed.        
+        // Returns the json decoded respone as the objects that were recieved in feed.
         public static function getFeedWithFilterClause($feedName, $fieldName, $fieldValue){
             //initiaze curl which is used to make the http request
             $ch = curl_init();
@@ -66,10 +66,10 @@
             //Enable fiddler to capture request
             //curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1:8888');
 
-            // $output contains the output string 
+            // $output contains the output string
             $output = curl_exec($ch);
-            // close curl resource to free up system resources 
-            curl_close($ch);      
+            // close curl resource to free up system resources
+            curl_close($ch);
             $jsonOutput = json_decode($output);
             // There is a field for odata metadata that we ignore and just consume the value
             return $jsonOutput->{'value'};
@@ -85,19 +85,19 @@
             // Create url for the entry based on the feedname and the key value
             $feedURL = 'https://graph.windows.net/'.Settings::$appTenantDomainName.'/'.$feedName.'(\''. $keyValue .'\')';
             $feedURL = $feedURL."?api-version=1.21-preview";
-            curl_setopt($ch, CURLOPT_URL, $feedURL);             
+            curl_setopt($ch, CURLOPT_URL, $feedURL);
             //Enable fiddler to capture request
             //curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1:8888');
 
-            // $output contains the output string 
+            // $output contains the output string
             $output = curl_exec($ch);
-            // close curl resource to free up system resources 
-            curl_close($ch);      
+            // close curl resource to free up system resources
+            curl_close($ch);
             $jsonOutput = json_decode($output);
             return $jsonOutput;
         }
 
-        // Constructs a HTTP POST request for creating and adding an entry 
+        // Constructs a HTTP POST request for creating and adding an entry
         // to a feed based on the feed name and data passed in.
         public static function addEntryToFeed($feedName, $entry){
             //initiaze curl which is used to make the http request
@@ -109,7 +109,7 @@
             $feedURL = $feedURL."?api-version=1.21-preview";
             curl_setopt($ch, CURLOPT_URL, $feedURL);
             // Mark as Post request
-            curl_setopt($ch, CURLOPT_POST, 1);            
+            curl_setopt($ch, CURLOPT_POST, 1);
             $data = json_encode($entry);
             // Set the data for the post request
             curl_setopt($ch, CURLOPT_POSTFIELDS,  $data);
@@ -118,7 +118,7 @@
             // read the output from the post request
             $output = curl_exec($ch);
             // close curl resource to free up system resources
-            curl_close($ch);      
+            curl_close($ch);
             // decode the response json decoder
             $createdEntry = json_decode($output);
             return $createdEntry;
@@ -142,10 +142,10 @@
             curl_setopt($ch, CURLOPT_POSTFIELDS,  $data);
             //Enable fiddler to capture request
             //curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1:8888');
-            
+
 
             // read the output from the post request
-            $output = curl_exec($ch); 
+            $output = curl_exec($ch);
             // close curl resource to free up system resources
             curl_close($ch);
             // decode the response json decoder
@@ -161,8 +161,8 @@
             // set url
             $feedURL = "https://graph.windows.net/".Settings::$appTenantDomainName.'/'.$feedName.'(\''. $keyValue .'\')';
             $feedURL = $feedURL."?api-version=1.21-preview";
-            curl_setopt($ch, CURLOPT_URL, $feedURL); 
-            
+            curl_setopt($ch, CURLOPT_URL, $feedURL);
+
             // Mark as Patch request
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
             //Enable fiddler to capture request
@@ -172,9 +172,9 @@
             // Set the data for the request
             curl_setopt($ch, CURLOPT_POSTFIELDS,  $data);
             // read the output from the request
-            $output = curl_exec($ch); 
+            $output = curl_exec($ch);
             // close curl resource to free up system resources
-            curl_close($ch);      
+            curl_close($ch);
             // decode the response json decoder
             $udpatedEntry = json_decode($output);
             return $udpatedEntry;
@@ -188,7 +188,7 @@
             // set url
             $feedURL = "https://graph.windows.net/".Settings::$appTenantDomainName.'/'.$feedName.'(\''. $keyValue .'\')';
             $feedURL = $feedURL."?api-version=1.21-preview";
-            curl_setopt($ch, CURLOPT_URL, $feedURL); 
+            curl_setopt($ch, CURLOPT_URL, $feedURL);
 
                         //Enable fiddler to capture request
             //curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1:8888');
@@ -196,9 +196,9 @@
             // Mark as Post request
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
             // read the output from the post request
-            $output = curl_exec($ch); 
+            $output = curl_exec($ch);
             // close curl resource to free up system resources
-            curl_close($ch);      
+            curl_close($ch);
             // decode the response json decoder
             $deletedEntry = json_decode($output);
             return $deletedEntry;
@@ -216,7 +216,7 @@
             $ch = curl_init();
             // Add authorization and other headers. Also set some common settings.
             self::AddRequiredHeadersAndSettings($ch);
-            // set url 
+            // set url
             if ($feedURL == NULL)
             {
                 $feedURL = "https://graph.windows.net/".Settings::$appTenantDomainName."/".$feedName;
@@ -229,8 +229,8 @@
             curl_setopt($ch, CURLOPT_URL, $feedURL);
             // $output contains the output string
             $output = curl_exec($ch);
-            // close curl resource to free up system resources 
-            curl_close($ch);      
+            // close curl resource to free up system resources
+            curl_close($ch);
             $jsonOutput = json_decode($output);
             // There is a field for odata metadata that we ignore and just consume the value
             return $jsonOutput;
@@ -241,14 +241,13 @@
         {
             //Generate the authentication header
             $authHeader = AuthorizationHelperForAADGraphService::GetAuthenticationHeader(Settings::$appTenantDomainName, Settings::$appPrincipalId, Settings::$password);
-            // Add authorization header, request/response format header( for json) and a header to request content for Update and delete operations.  
+            // Add authorization header, request/response format header( for json) and a header to request content for Update and delete operations.
             curl_setopt($ch, CURLOPT_HTTPHEADER, array($authHeader,  'Accept:application/json;odata=minimalmetadata',
                                                         'Content-Type:application/json;odata=minimalmetadata', 'Prefer:return-content'));
             // Set the option to recieve the response back as string.
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             // By default https does not work for CURL.
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         }
     }
 ?>
-
